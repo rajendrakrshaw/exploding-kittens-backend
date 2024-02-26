@@ -170,6 +170,12 @@ func main() {
 	config.AllowOrigins = []string{"*"} // Add your React app's URL
 	r.Use(cors.New(config))
 
+	r.GET("", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Deployed",
+		})
+	})
+
 	r.GET("/users", GetAllUsers)
 	r.GET("/users/:username", GetUserByName)
 	r.POST("/users", PutUser)
